@@ -1,0 +1,54 @@
+#!/bin/bash
+
+#### DECLARACION DE METODOS
+mensaje () {
+    echo ""
+    echo "-----------------------------------"
+    echo "  $1"
+    echo "-----------------------------------"
+}
+#### DECLARACION DE METODOS
+
+# esto hace que cuando tenga un error o algo detenga la ejecucion del script
+set -e
+
+# tomamos los argumentos y los setemaos a varialbes
+PATH=$1
+FILE_NAME=$2
+
+# esto esta, porque 'funciones_basicas' no es necesario compilarlo
+if [ $FILE_NAME == 'funciones_basicas' ]; then
+    echo "Este archivo '$FILE_NAME' no se compila"
+    exit 0
+fi
+
+# nos movemos a la carpeta
+cd $PATH
+
+# si ya existe un .o es eliminado
+if [ -f $FILE_NAME.o ]; then
+    /bin/rm $FILE_NAME.o
+fi
+
+# si ya existe un .sh es eliminado
+if [ -f $FILE_NAME.sh ]; then
+    /bin/rm $FILE_NAME.sh
+fi
+
+# hacemos la compilacion de nasm
+mensaje "Compilando con nasm"
+/usr/bin/nasm -f elf $FILE_NAME.asm
+mensaje "Compilado Correcto."
+
+# hacemos una comparacion, si es valida es 64bits si no 32bits
+if [ `/usr/bin/getconf LONG_BIT` == '64' ]; then
+    # compilacion para 64bits
+    mensaje "Compilando con ld 64bits"
+    /usr/bin/ld -m elf_i386 -s -o $FILE_NAME.sh $FILE_NAME.o
+    mensaje "Compilado Correcto."
+else
+    # compilacion para 32bits
+    mensaje "Compilando con ld 32bits"
+    /usr/bin/ld -o $FILE_NAME.sh $FILE_NAME.o
+    mensaje "Compilado Correcto."
+fi
