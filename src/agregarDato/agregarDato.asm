@@ -16,7 +16,7 @@ AgregarNumero:
 
     mov eax, Buffer_AgregarNumero     ; preparamos para convertir edad
     call atoi                         ; convertimos
-    call iprintLF                     ; 
-    call saltoDeLinea                 ;
+    call iprintLF
+    call saltoDeLinea
 
     jmp main                          ; regresando al principio

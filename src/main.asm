@@ -5,19 +5,19 @@
 %include './error/error.asm'
 
 section .text
-    global _start:        ; declaramos punto de inicio
+    global _start:                       ; declaramos punto de inicio
 
 _start:
-    jmp argumentoArchivo
+    jmp argumentoArchivo                 ; vamos a leer el archvio que va en el argumento
 
-main:
-    call printMenu
+main:                                    ; ciclo para el menu
+    call printMenu                       ; imprimimos el menu
 
-    cmp eax, 0
+    cmp eax, 0                           ; comparamos con la opcion 0, para salir
     je quit
 
-    cmp eax, 1
+    cmp eax, 1                           ; comparamos con la opcion 1, para agregar numero
     je AgregarNumero
 
-    cmp eax, 5
+    cmp eax, 5                           ; si es mayor a 5, manda el error de opcion
     jg errorOpcion

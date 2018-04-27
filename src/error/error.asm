@@ -6,11 +6,11 @@ section .text
 errorOpcion:
     mov eax, LabelOpcionError ; cargamos el primer mensaje
     call sprintLF             ; mandamos a llamar al "metodo" que imprime
-    call saltoDeLinea         ;
+    call saltoDeLinea
     jmp main                  ; regresando al principio
 
 errorOpenFile:                ; salida de error
     mov eax, LabelSalidaError ; cargamos el primer mensaje
     call sprintLF             ; mandamos a llamar al "metodo" que imprime
-    call saltoDeLinea         ;
+    call saltoDeLinea
     jmp main                  ; regresando al principio
