@@ -15,8 +15,10 @@ saltoLinea DB '',0x0      ;
 
 
 saltoDeLinea:
+    push eax            ; guardamos el valor de eax
     mov eax, saltoLinea ; cargamos el primer mensaje
     call sprintLF       ; mandamos a llamar al "metodo" que imprime
+    pop eax             ; sacamos el valor de eax
     ret
 
 strlen:                   ; Recibe direccion de cadena a medir longitud en EAX ; Regresa en EAX el conteo de caracteres de la cadena
@@ -234,7 +236,7 @@ itoa:
     inc ebx ;incrementamos contador
     cmp ebx,ecx ;comparamos con la cuenta de digitos
     jne .guardar ;si no son iguales, obtenemos otro digito del stack
-    
+
     pop esi ; restauramos esi
     pop edx ; restauramos edx
     pop ecx ; restauramos ecx

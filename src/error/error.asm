@@ -5,5 +5,5 @@ section .text
 printErrorLabel:
     mov eax, LabelError ; cargamos el primer mensaje
     call sprintLF       ; mandamos a llamar al "metodo" que imprime
-    call saltoDeLinea   ; 
-    jmp _start          ; regresando al principio
+    call saltoDeLinea   ;
+    jmp main            ; regresando al principio

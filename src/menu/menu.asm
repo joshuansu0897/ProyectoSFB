@@ -18,7 +18,7 @@ printMenu:
     call sprint                ; mandamos a llamar al "metodo" que imprime
 
     call saltoDeLinea          ; nada mas es un salto de linea
-    
+
     mov eax, opcion2           ; cargamos el primer mensaje
     call sprint                ; mandamos a llamar al "metodo" que imprime
     mov eax, opcion3           ; cargamos el primer mensaje
@@ -43,5 +43,7 @@ printMenu:
 
     mov eax, Buffer_opcion     ; preparamos para convertir edad
     call atoi                  ; convertimos
+
+    call saltoDeLinea          ; salto de linea para que se vea mas estetico
 
     ret
