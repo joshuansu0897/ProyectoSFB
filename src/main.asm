@@ -20,4 +20,4 @@ main:
     je AgregarNumero
 
     cmp eax, 5
-    jg printErrorLabel
+    jg errorOpcion

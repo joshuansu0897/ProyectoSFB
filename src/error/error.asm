@@ -1,9 +1,16 @@
 section .data
-    LabelError DB '*** Esa Opcion No Es Valida ***',0x0
+    LabelOpcionError DB '*** Esa Opcion No Es Valida ***',0x0
+    LabelSalidaError DB '*** ERROR AL ABRIR ARCHIVO ***',0x0
 
 section .text
-printErrorLabel:
-    mov eax, LabelError ; cargamos el primer mensaje
-    call sprintLF       ; mandamos a llamar al "metodo" que imprime
-    call saltoDeLinea   ;
-    jmp main            ; regresando al principio
+errorOpcion:
+    mov eax, LabelOpcionError ; cargamos el primer mensaje
+    call sprintLF             ; mandamos a llamar al "metodo" que imprime
+    call saltoDeLinea         ;
+    jmp main                  ; regresando al principio
+
+errorOpenFile:                ; salida de error
+    mov eax, LabelSalidaError ; cargamos el primer mensaje
+    call sprintLF             ; mandamos a llamar al "metodo" que imprime
+    call saltoDeLinea         ;
+    jmp main                  ; regresando al principio

@@ -15,7 +15,7 @@ argumentoArchivo:
     int 80h
 
     cmp eax, 0         ; si File handler es mayor a 0 (si no mal)
-    jle error
+    jle errorOpenFile
 
     mov ebx, eax       ; lee archivo ;pasamos el file handler de eax a EBX
     mov eax, sys_read  ; operacion lectura

@@ -169,11 +169,6 @@ LeerTexto:            ; para leer texto desde el teclado
     int 80H
     ret
 
-error:                ; salida de error
-    mov ebx, eax
-    mov eax, sys_exit
-    int 80h
-
 copystring:
     push ecx
     push ebx
