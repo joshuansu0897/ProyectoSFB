@@ -4,6 +4,10 @@
 %include './agregarDato/agregarDato.asm'
 %include './error/error.asm'
 
+section .bss
+    arreglo_entero resb 200              ; 50 casillas de 4 bytes c/u
+    arreglo_result resb 200              ; 50 casillas de 4 bytes c/u
+
 section .text
     global _start:                       ; declaramos punto de inicio
 
