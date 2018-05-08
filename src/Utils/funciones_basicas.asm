@@ -13,7 +13,6 @@ O_RDONLY  equ   0        ; open for read only
 O_RDWR    equ   1        ; open for read and write.
 saltoLinea DB '',0x0
 
-
 saltoDeLinea:
     push eax             ; guardamos el valor de eax
     mov eax, saltoLinea  ; cargamos el primer mensaje
@@ -171,27 +170,40 @@ LeerTexto:               ; para leer texto desde el teclado
 
 copystring:
     push ecx
-    push ebx
-    mov ebx, 0
+    push eax
+    push edx
+    mov edx, 0
+    mov eax, letra
     mov ecx, 0
+    mov ebp, 0
 
 .sigcar:
-    mov bl, byte[eax]
-    cmp bl, 0xA
+    mov dl, byte[ebx]
+    cmp dl, 0xA
     je .salto
 
-    mov byte[esi+ecx], bl
-    cmp byte[eax], 0
-
-    jz .finalizar
+    mov [eax+ebp], dl
+    inc ebx
+    inc ebp
+    jmp .sigcar
 
 .salto:
-    inc eax
+    call atoi
+    mov [esi+ecx*4], eax
+    mov eax, letra
+    mov ebp, 0
+
+    inc ebx
     inc ecx
+
+    cmp byte[ebx], 0
+    jz .finalizar
+
     jmp .sigcar
 
 .finalizar:
-    pop ebx
+    pop edx
+    pop eax
     pop ecx
     ret
 

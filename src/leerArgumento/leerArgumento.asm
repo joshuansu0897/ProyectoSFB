@@ -26,7 +26,7 @@ argumentoArchivo:
     mov eax, sys_close ; cerrar archivo
     int 80h
 
-    mov eax, buffer    ; imprime buffer
+    mov ebx, buffer    ; imprime buffer
     call copystring    ; a ver que pasa
 
     mov esp, arreglo_result
