@@ -12,6 +12,7 @@ section .text
     global _start:                       ; declaramos punto de inicio
 
 _start:
+    mov esi, arreglo_entero              ; movemos el arreglo a esi
     jmp argumentoArchivo                 ; vamos a leer el archvio que va en el argumento
 
 main:                                    ; ciclo para el menu

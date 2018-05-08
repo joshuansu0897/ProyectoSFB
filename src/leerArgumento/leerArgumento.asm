@@ -27,6 +27,7 @@ argumentoArchivo:
     int 80h
 
     mov eax, buffer    ; imprime buffer
-    call sprintLF
+    call copystring    ; a ver que pasa
 
+    mov esp, arreglo_result
     jmp main           ; regresamos
