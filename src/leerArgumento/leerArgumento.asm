@@ -31,11 +31,5 @@ argumentoArchivo:
     mov ebx, buffer    ; imprime buffer
     call copystring    ; a ver que pasa
 
-    mov eax, edi
-    call iprintLF
-
-    mov eax, ebp
-    call iprintLF
-
     mov esp, arreglo_result
     jmp main           ; regresamos
