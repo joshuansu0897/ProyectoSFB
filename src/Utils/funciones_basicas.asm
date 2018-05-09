@@ -13,7 +13,18 @@ O_RDONLY  equ   0        ; open for read only
 O_RDWR    equ   1        ; open for read and write.
 saltoLinea DB '',0x0
 
-saltoDeLinea:
+
+lentArrayNormal:         ; este metodo es para mover el valor de edp a edi
+    cmp ebp, 0           ; comparamos
+    jnz lentArrayNormalCiclo ; si es diferente de 0
+    ret
+
+lentArrayNormalCiclo:
+    dec ebp              ; retamos edp
+    inc edi              ; incrementamos edi
+    jmp lentArrayNormal  ; regresamos a comparar
+
+saltoDeLinea:            ; metodo para imrpimir un salto de linea
     push eax             ; guardamos el valor de eax
     mov eax, saltoLinea  ; cargamos el primer mensaje
     call sprintLF        ; mandamos a llamar al "metodo" que imprime
@@ -152,14 +163,24 @@ finalizado:
     pop ebx              ; re-establecemos ebx
     ret
 
-    ; compara el valor de eax con ebx, si eax es mayor mueve dicho valor a ebx con la funcion "seterDatos"
+    ; compara el valor de eax con ebx, si eax es mayor mueve dicho valor a ebx
 numeroMayor:
     cmp eax, ebx         ; comparamos eax con ebx
-    jg moverAeaxAebx     ; vamos a "setearDatos"
+    jg moverEAXaEBX      ; vamos a "setearDatos"
     ret
 
-moverAeaxAebx:
+moverEAXaEBX:
     mov ebx, eax         ; movemos el valor de eax a ebx
+    ret
+
+    ; compara el valor de eax con ecx, si eax es menor mueve dicho valor a ecx
+numeroMenor:
+    cmp eax, ecx         ; comparamos eax con ecx
+    jl moverEAXaECX      ; vamos a "setearDatos"
+    ret
+
+moverEAXaECX:
+    mov ecx, eax         ; movemos el valor de eax a ecx
     ret
 
 LeerTexto:               ; para leer texto desde el teclado
@@ -169,13 +190,13 @@ LeerTexto:               ; para leer texto desde el teclado
     ret
 
 copystring:
-    push ecx
     push eax
     push edx
     mov edx, 0
     mov eax, letra
     mov ecx, 0
     mov ebp, 0
+    mov edi, 0
 
 .sigcar:
     mov dl, byte[ebx]
@@ -189,12 +210,12 @@ copystring:
 
 .salto:
     call atoi
-    mov [esi+ecx*4], eax
+    mov [esi+edi*4], eax
     mov eax, letra
     mov ebp, 0
 
     inc ebx
-    inc ecx
+    inc edi
 
     cmp byte[ebx], 0
     jz .finalizar
@@ -204,7 +225,6 @@ copystring:
 .finalizar:
     pop edx
     pop eax
-    pop ecx
     ret
 
     ; ------------------------------------

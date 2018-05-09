@@ -4,6 +4,8 @@ section .bss
     file    resb    4
     filelen resb    4
 
+    letra   resb    2
+
 section .text
 argumentoArchivo:
     pop ecx            ; vemos los argumentos del sistema operativo extraemos el numero de argumentos
@@ -28,6 +30,12 @@ argumentoArchivo:
 
     mov ebx, buffer    ; imprime buffer
     call copystring    ; a ver que pasa
+
+    mov eax, edi
+    call iprintLF
+
+    mov eax, ebp
+    call iprintLF
 
     mov esp, arreglo_result
     jmp main           ; regresamos
