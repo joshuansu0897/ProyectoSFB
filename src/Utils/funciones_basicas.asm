@@ -12,7 +12,25 @@ stderr    equ   3            ; salida de error estandar
 O_RDONLY  equ   0            ; open for read only
 O_RDWR    equ   1            ; open for read and write.
 saltoLinea DB '',0x0
+LabelMayor DB 'El número mayor es:',0x0
+LabelMenor DB 'El número menor es:',0x0
 
+printMayorMenor:
+    push eax
+
+    mov eax, LabelMenor
+    call sprint
+    mov eax,ecx
+    call iprintLF
+    mov eax, LabelMayor
+    call sprint
+    mov eax,edx
+    call iprintLF
+
+    call saltoDeLinea
+
+    pop eax
+    ret
 
 lentArrayNormal:             ; este metodo es para mover el valor de edp a edi
     cmp ebp, 0               ; comparamos
@@ -165,12 +183,12 @@ finalizado:
 
     ; compara el valor de eax con ebx, si eax es mayor mueve dicho valor a ebx
 numeroMayor:
-    cmp eax, ebx             ; comparamos eax con ebx
-    jg moverEAXaEBX          ; vamos a "setearDatos"
+    cmp eax, edx             ; comparamos eax con edx
+    jg moverEAXaEDX          ; vamos a "setearDatos"
     ret
 
-moverEAXaEBX:
-    mov ebx, eax             ; movemos el valor de eax a ebx
+moverEAXaEDX:
+    mov edx, eax             ; movemos el valor de eax a edx
     ret
 
     ; compara el valor de eax con ecx, si eax es menor mueve dicho valor a ecx

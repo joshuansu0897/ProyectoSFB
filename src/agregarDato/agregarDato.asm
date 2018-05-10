@@ -20,27 +20,4 @@ AgregarNumero:
     inc edi                           ; Incrementamos la posiciòn del arreglo
     call saltoDeLinea
 
-printArrr:
-    mov eax, [esi+ebp*4]              ; Movemos un numero a eax
-    call iprintLF                     ; Imprimimos el numero
-    call OperacionCruva
-    call iprintLF
-    call numeroMayor
-    call numeroMenor
-    call saltoDeLinea
-    inc ebp
-    dec edi
-    cmp edi, 0
-    jnz printArrr
-
-    mov eax, ebx
-    call iprintLF
-
-    mov eax, ecx
-    call iprintLF
-
-    call saltoDeLinea
-
-    call lentArrayNormal
-
     jmp main                          ; regresando al principio

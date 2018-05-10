@@ -9,7 +9,7 @@ OperacionLineal:
     pop edx      ; regresamos el valor de edx
     ret
 
-OperacionCruva:
+OperacionCurva:
     push edx     ; guardamos edx
     push ebx     ; guardamos ebx
     push ecx     ; guardamos ecx
