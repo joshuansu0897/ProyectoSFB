@@ -6,6 +6,7 @@
 %include './error/Error.asm'
 %include './curva/Curva.asm'
 %include './linea/Linea.asm'
+%include './imprimir/Imprimir.asm'
 
 section .bss
     arreglo_entero resb 200              ; 50 casillas de 4 bytes c/u
@@ -34,7 +35,7 @@ main:                                    ; ciclo para el menu
     je Curva
 
     cmp eax, 4
-    je quit   ; aqui va imprimir
+    je imprimirArreglos   ; aqui va imprimir
 
     cmp eax, 5
     je quit   ; aqui va guardar en archivo
