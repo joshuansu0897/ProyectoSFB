@@ -37,6 +37,8 @@ cicloArreglos:
     call sprint                     ; imprimimos el label
     mov eax, [esp+ebp*4]            ; movemos el numero resultado al array esp
     call iprintLF                   ; imprimimos label con salto de linea
+    call numeroMayor                ; buscamos el numero mayor
+    call numeroMenor                ; buscamos el numero menor
     mov eax, espaciosLabel          ; movemos el label a eax
     call sprint                     ; imprimimos el label
     inc ebp                         ; incrementamos ebp
@@ -46,6 +48,8 @@ cicloArreglos:
 
     call lentArrayNormal            ; cambia el valor de ebp a edi
 
-    call saltoDeLinea
+    call saltoDeLinea               ; salto de linea
+
+    call printMayorMenor            ; imprimimos los numeros, mayor y menor
 
     jmp main
