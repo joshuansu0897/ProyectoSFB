@@ -28,17 +28,17 @@ main:                                    ; ciclo para el menu
     cmp eax, 1                           ; comparamos con la opcion 1, para agregar numero
     je AgregarNumero
 
-    cmp eax, 2
-    je Lineal
+    cmp eax, 2                           ; comparamos eax con 2
+    je Lineal                            ; si eax es iwal a 2 vamos a la funcion lineal
 
-    cmp eax, 3
-    je Curva
+    cmp eax, 3                           ; comparamos eax con la opcion 3
+    je Curva                             ; si es igual a 3 vamos a la funcion curva
 
-    cmp eax, 4
-    je imprimirArreglos   ; aqui va imprimir
+    cmp eax, 4                           ; comparamos eax con 4
+    je imprimirArreglos                  ; si es igual vamos a imprimir
 
     cmp eax, 5
-    je quit   ; aqui va guardar en archivo
+    je quit                              ; aqui va guardar en archivo
 
     cmp eax, 5                           ; si es mayor a 5, manda el error de opcion
     jg errorOpcion

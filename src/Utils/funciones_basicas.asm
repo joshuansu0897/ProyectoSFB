@@ -16,20 +16,20 @@ LabelMayor DB 'El número mayor es:',0x0
 LabelMenor DB 'El número menor es:',0x0
 
 printMayorMenor:
-    push eax
+    push eax                 ; guardamos el valor de eax
 
-    mov eax, LabelMenor
-    call sprint
-    mov eax,ecx
-    call iprintLF
-    mov eax, LabelMayor
-    call sprint
-    mov eax,edx
-    call iprintLF
+    mov eax, LabelMenor      ; movemos label a eax
+    call sprint              ; imprimimos
+    mov eax,ecx              ; movemos ecx (numero menor) a eax
+    call iprintLF            ; imprimimos con salto de linea
+    mov eax, LabelMayor      ; movemos el label a eax
+    call sprint              ; imprimimos
+    mov eax,edx              ; movemos edx (numero maior) a eax
+    call iprintLF            ; imprimimos con salto de linea
 
     call saltoDeLinea
 
-    pop eax
+    pop eax                  ; tomamos el valor de eax
     ret
 
 lentArrayNormal:             ; este metodo es para mover el valor de edp a edi

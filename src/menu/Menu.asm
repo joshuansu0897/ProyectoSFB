@@ -19,22 +19,22 @@ printMenu:
 
     call saltoDeLinea          ; nada mas es un salto de linea
 
-    mov eax, opcion2           ; cargamos el primer mensaje
+    mov eax, opcion2           ; cargamos el segundo mensaje
     call sprint                ; mandamos a llamar al "metodo" que imprime
-    mov eax, opcion3           ; cargamos el primer mensaje
+    mov eax, opcion3           ; cargamos el tercer mensaje
     call sprint                ; mandamos a llamar al "metodo" que imprime
-    mov eax, opcion4           ; cargamos el primer mensaje
+    mov eax, opcion4           ; cargamos el cuarto mensaje
     call sprint                ; mandamos a llamar al "metodo" que imprime
-    mov eax, opcion5           ; cargamos el primer mensaje
+    mov eax, opcion5           ; cargamos el quinto mensaje
     call sprint                ; mandamos a llamar al "metodo" que imprime
-    mov eax, opcion6           ; cargamos el primer mensaje
+    mov eax, opcion6           ; cargamos el sexto mensaje
     call sprint                ; mandamos a llamar al "metodo" que imprime
-    mov eax, opcion7           ; cargamos el primer mensaje
+    mov eax, opcion7           ; cargamos el septimo mensaje
     call sprint                ; mandamos a llamar al "metodo" que imprime
 
     call saltoDeLinea          ; nada mas es un salto de linea
 
-    mov eax, opcion8           ; cargamos el primer mensaje
+    mov eax, opcion8           ; cargamos el octavo mensaje
     call sprint                ; mandamos a llamar al "metodo" que imprime
 
     mov ecx, Buffer_opcion     ; direccion de Buffer a ecx
