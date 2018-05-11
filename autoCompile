@@ -16,8 +16,8 @@ set -e
 PATH=$1
 FILE_NAME=$2
 
-# esto esta, porque no es necesario compilar los que no son el main
-if [ $FILE_NAME != 'main' ]; then
+# esto esta porque no es necesario compilar los que no son el main
+if [ $FILE_NAME != 'main' ] && [ $FILE_NAME != 'Main' ] && [ $FILE_NAME != 'MAIN' ]; then
     echo "Este archivo '$FILE_NAME' no se compila"
     exit 0
 fi
