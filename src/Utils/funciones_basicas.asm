@@ -3,15 +3,15 @@ section .data
     sys_exit  equ   1
     sys_read  equ   3
     sys_write equ   4
-    sys_open  equ   5            ; apertura de archivo
-    sys_close equ   6            ; cierre de archivo
-    sys_creat equ   8            ; crear archivo
-    sys_sync  equ  36            ; sincronizar con disco (forzar escritura)
-    stdin     equ   0            ; entrada estandar (teclado)
-    stdout    equ   1            ; salida estandar (pantalla)
-    stderr    equ   3            ; salida de error estandar
-    O_RDONLY  equ   0            ; open for read only
-    O_RDWR    equ   1            ; open for read and write.
+    sys_open  equ   5        ; apertura de archivo
+    sys_close equ   6        ; cierre de archivo
+    sys_creat equ   8        ; crear archivo
+    sys_sync  equ  36        ; sincronizar con disco (forzar escritura)
+    stdin     equ   0        ; entrada estandar (teclado)
+    stdout    equ   1        ; salida estandar (pantalla)
+    stderr    equ   3        ; salida de error estandar
+    O_RDONLY  equ   0        ; open for read only
+    O_RDWR    equ   1        ; open for read and write.
     saltoLinea DB '',0x0
     LabelMayor DB 'El número mayor es:',0x0
     LabelMenor DB 'El número menor es:',0x0
@@ -238,42 +238,42 @@ copystring:
     pop ecx
     ret
 
-stringToArrayNum:
-    push eax
-    push edx
-    mov edx, 0
-    mov eax, letra
-    mov ecx, 0
-    mov ebp, 0
-    mov edi, 0
+stringToArrayNum:            ; este metodo toma todo un str con numeros y los mete en un array
+    push eax                 ; guardamos valores
+    push edx                 ; guardamos valores
+    mov edx, 0               ; movemos 0 a edx
+    mov eax, letra           ; esto es para que sea un str vacio
+    mov ecx, 0               ; movemos 0 a ecx
+    mov ebp, 0               ; movemos 0 a edp
+    mov edi, 0               ; movemos 0 a edi
 
-.sigcar:
-    mov dl, byte[ebx]
-    cmp dl, 0xA
-    je .salto
+.sigcar:                     ; esto recorre los str para pasarlos a eax y hacerlos numeros y luego al array
+    mov dl, byte[ebx]        ; pasamos el byte a dl
+    cmp dl, 0xA              ; comparamos si es el salto de linea
+    je .salto                ; si es salto de linea vamos a .salto
 
-    mov [eax+ebp], dl
-    inc ebx
-    inc ebp
-    jmp .sigcar
+    mov [eax+ebp], dl        ; si no movemos el byte a eax
+    inc ebx                  ; incrementamos ebx para tomar el otro char
+    inc ebp                  ; incrementamos ebp para escribir en otra posicion
+    jmp .sigcar              ; regresamos
 
-.salto:
-    call atoi
-    mov [esi+edi*4], eax
-    mov eax, letra
-    mov ebp, 0
+.salto:                      ; salto, esto hace la convercion de eax y lo mete al array
+    call atoi                ; llamamos a la convercion de acsii a int
+    mov [esi+edi*4], eax     ; movemos el numero al array que esta en esi
+    mov eax, letra           ; seteamos eax en str vacio otra vez
+    mov ebp, 0               ; movemos el contador de chars a 0
 
-    inc ebx
-    inc edi
+    inc ebx                  ; incrementamos ebx para tomar el otro char
+    inc edi                  ; incrementamos edi para escribir en otra posicion en esi
 
-    cmp byte[ebx], 0
-    jz .finalizar
+    cmp byte[ebx], 0         ; comparamos con 0 para saber si es el final
+    jz .finalizar            ; si es el final de str vamos a .finalizar
 
-    jmp .sigcar
+    jmp .sigcar              ; regresamos
 
 .finalizar:
-    pop edx
-    pop eax
+    pop edx                  ; regresamos los valores
+    pop eax                  ; regresamos los valores
     ret
 
     ; ------------------------------------
