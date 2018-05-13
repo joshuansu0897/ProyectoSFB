@@ -20,6 +20,20 @@ section .bss
     letra   resb    2
 
 section .text
+printArrEsi:
+    mov eax, [esi+ebp*4] ; Movemos un numero a eax
+    call iprintLF
+    inc ebp              ; incrementa ebp
+    dec edi              ; se decrementa
+    cmp edi, 0           ; comparamos con 0
+    jnz printArrEsi      ; si no es iwal a 0 se regresa a curva
+
+    call lentArrayNormal
+
+    call saltoDeLinea
+
+    ret
+
 printMayorMenor:
     push eax                 ; guardamos el valor de eax
 

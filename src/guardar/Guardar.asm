@@ -1,5 +1,5 @@
 segment .bss
-    array_res RESB 600                                ; buffer para alumno
+    array_res RESB 400                                ; buffer para alumno
     len_array_res EQU $-array_res                     ; lent del buffer
 
     filename RESB 30                                  ; buffer para filename
@@ -14,6 +14,8 @@ section .text
 Guardar:
     mov ebx, array_res                                ; movemos el array(buffer) a ebx
     mov edx, 0                                        ; movemos 0 a edx
+
+    ;;;call printArrEsi ; aqui esta bien todo el array de esi
 
 .cicloArreglos:
     mov eax, [esi+ebp*4]                              ; Movemos un numero a eax
@@ -61,6 +63,8 @@ Guardar:
 
     call lentArrayNormal                              ; cambia el valor de ebp a edi
 
+    ;;;call printArrEsi ; para este punto esi ya esta modificado en su posicion 0, no se porque
+
     mov eax, p_archivo                                ; pregunta por nombre de archivo a guardar
     call sprint                                       ; imprime mensaje
 
@@ -69,11 +73,13 @@ Guardar:
 
     call LeerTexto                                    ; input desde el teclado
 
-    call saltoDeLinea
+    push esi                                          ; guardamos el valor de esi (array)
 
     mov esi, archivo                                  ; copia hasta archivo
     mov eax, filename                                 ; desde filename
     call copystring                                   ; pero sin el caracter 0xA
+
+    pop esi                                           ; restauramos el valor de esi (array)
 
     mov eax, sys_creat                                ; sys_creat EQU 8
     mov ebx, archivo                                  ; nombre del archivo
