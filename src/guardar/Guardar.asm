@@ -73,6 +73,8 @@ Guardar:
 
     call LeerTexto                                    ; input desde el teclado
 
+    call saltoDeLinea
+
     push esi                                          ; guardamos el valor de esi (array)
 
     mov esi, archivo                                  ; copia hasta archivo

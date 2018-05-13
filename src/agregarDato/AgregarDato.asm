@@ -20,4 +20,6 @@ AgregarNumero:
     inc edi                           ; Incrementamos la posiciòn del arreglo
     call saltoDeLinea
 
+    call messageDatoAgregado
+
     jmp main                          ; regresando al principio

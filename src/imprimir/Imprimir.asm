@@ -18,14 +18,18 @@ imprimirArreglos:
     mov eax, labelArregloResultados ; movemos el label a eax
     call sprintLF                   ; imprimimos el label con salto de linea
 
+    call ColorRojo
     mov eax, labelIgualEntrada      ; movemos el label a eax
     call sprint                     ; imprimimos el label
+    call ColorNormal
 
     mov eax, espaciosLabel          ; movemos el label a eax
     call sprint                     ; imprimimos el label
 
+    call ColorVerde
     mov eax, labelIgualResultados   ; movemos el label a eax
     call sprintLF                   ; imprimimos el label con salto de linea
+    call ColorNormal
 
     mov eax, espaciosLabel          ; movemos el label a eax
     call sprint                     ; imprimimos el label

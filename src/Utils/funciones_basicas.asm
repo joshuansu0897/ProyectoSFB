@@ -36,15 +36,21 @@ printArrEsi:
 
 printMayorMenor:
     push eax                 ; guardamos el valor de eax
+    push edx                 ; guardamos el numero mayor en el stack
+    push ecx                 ; guardamos el numero menor en el stack
 
     mov eax, LabelMenor      ; movemos label a eax
     call sprint              ; imprimimos
-    mov eax,ecx              ; movemos ecx (numero menor) a eax
+    call ColorRojo           ; lo siguiente que escribas sera rojo
+    pop eax                  ; sacamos el numero menor del stack
     call iprintLF            ; imprimimos con salto de linea
+    call ColorNormal         ; regresaamos los colores a la normalidad
     mov eax, LabelMayor      ; movemos el label a eax
     call sprint              ; imprimimos
-    mov eax,edx              ; movemos edx (numero maior) a eax
+    call ColorVerde          ; lo siguiente que escribas sera verde
+    pop eax                  ; saacamos el numero mayor del stack
     call iprintLF            ; imprimimos con salto de linea
+    call ColorNormal         ; colores a la normalidad
 
     call saltoDeLinea
 

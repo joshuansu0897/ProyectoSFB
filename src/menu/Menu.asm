@@ -1,5 +1,5 @@
 section .data
-    opcion1 DB '*** MENU ***',0xA,0x0
+    opcion1 DB ' MENU ',0x0
     opcion2 DB '1. Agregar Dato',0xA,0x0
     opcion3 DB '2. Generar Linea',0xA,0x0
     opcion4 DB '3. Generar Curva',0xA,0x0
@@ -14,8 +14,12 @@ section .bss
 
 section .text
 printMenu:
+    call decoracionAzul        ; imprimimos la decoracionAzul
+
     mov eax, opcion1           ; cargamos el primer mensaje
     call sprint                ; mandamos a llamar al "metodo" que imprime
+
+    call decoracionAzul        ; imprimimos la decoracionAzul
 
     call saltoDeLinea          ; nada mas es un salto de linea
 
