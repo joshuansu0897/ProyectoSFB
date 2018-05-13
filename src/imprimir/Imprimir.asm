@@ -30,7 +30,7 @@ imprimirArreglos:
     mov eax, espaciosLabel          ; movemos el label a eax
     call sprint                     ; imprimimos el label
 
-cicloArreglos:
+.cicloArreglos:
     mov eax, [esi+ebp*4]            ; Movemos un numero a eax
     call iprint                     ; Imprimimos el numero
     mov eax, espaciosNumeros        ; movemos el label a eax
@@ -44,7 +44,7 @@ cicloArreglos:
     inc ebp                         ; incrementamos ebp
     dec edi                         ; decrementamos edi
     cmp edi, 0                      ; comparamos edi con 0
-    jnz cicloArreglos               ; si no es cero regresamos a cicloArreglos
+    jnz .cicloArreglos               ; si no es cero regresamos a cicloArreglos
 
     call lentArrayNormal            ; cambia el valor de ebp a edi
 

@@ -1,12 +1,14 @@
 %include './Utils/funciones_basicas.asm'
 %include './Utils/Operaciones.asm'
+%include './Utils/Error.asm'
+%include './Utils/Mensaje.asm'
 %include './menu/Menu.asm'
 %include './leerArgumento/LeerArgumento.asm'
 %include './agregarDato/AgregarDato.asm'
-%include './error/Error.asm'
 %include './curva/Curva.asm'
 %include './linea/Linea.asm'
 %include './imprimir/Imprimir.asm'
+%include './guardar/Guardar.asm'
 
 section .bss
     arreglo_entero resb 200              ; 50 casillas de 4 bytes c/u
@@ -38,7 +40,7 @@ main:                                    ; ciclo para el menu
     je imprimirArreglos                  ; si es igual vamos a imprimir
 
     cmp eax, 5
-    je quit                              ; aqui va guardar en archivo
+    je Guardar                           ; aqui va guardar en archivo
 
     cmp eax, 5                           ; si es mayor a 5, manda el error de opcion
     jg errorOpcion

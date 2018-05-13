@@ -10,4 +10,6 @@ Lineal:
 
     call lentArrayNormal ; cambia el valor de ebp y edi
 
+    call messageOperacion
+
     jmp main             ; regresando al principio

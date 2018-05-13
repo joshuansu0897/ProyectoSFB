@@ -8,6 +8,8 @@ Curva:
     cmp edi, 0           ; comparamos con 0
     jnz Curva            ; si no es iwal a 0 se regresa a curva
 
-    call lentArrayNormal ; movemos el valor de ebp a edi
+    call lentArrayNormal ; movemos el valor de ebp a
+
+    call messageOperacion
 
     jmp main             ; regresando al principio

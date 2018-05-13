@@ -1,20 +1,25 @@
 ; funciones.asm
-sys_exit  equ   1
-sys_read  equ   3
-sys_write equ   4
-sys_open  equ   5            ; apertura de archivo
-sys_close equ   6            ; cierre de archivo
-sys_creat equ   8            ; crear archivo
-sys_sync  equ  36            ; sincronizar con disco (forzar escritura)
-stdin     equ   0            ; entrada estandar (teclado)
-stdout    equ   1            ; salida estandar (pantalla)
-stderr    equ   3            ; salida de error estandar
-O_RDONLY  equ   0            ; open for read only
-O_RDWR    equ   1            ; open for read and write.
-saltoLinea DB '',0x0
-LabelMayor DB 'El número mayor es:',0x0
-LabelMenor DB 'El número menor es:',0x0
+section .data
+    sys_exit  equ   1
+    sys_read  equ   3
+    sys_write equ   4
+    sys_open  equ   5            ; apertura de archivo
+    sys_close equ   6            ; cierre de archivo
+    sys_creat equ   8            ; crear archivo
+    sys_sync  equ  36            ; sincronizar con disco (forzar escritura)
+    stdin     equ   0            ; entrada estandar (teclado)
+    stdout    equ   1            ; salida estandar (pantalla)
+    stderr    equ   3            ; salida de error estandar
+    O_RDONLY  equ   0            ; open for read only
+    O_RDWR    equ   1            ; open for read and write.
+    saltoLinea DB '',0x0
+    LabelMayor DB 'El número mayor es:',0x0
+    LabelMenor DB 'El número menor es:',0x0
 
+section .bss
+    letra   resb    2
+
+section .text
 printMayorMenor:
     push eax                 ; guardamos el valor de eax
 
@@ -208,6 +213,32 @@ LeerTexto:                   ; para leer texto desde el teclado
     ret
 
 copystring:
+    push ecx
+    push ebx
+    mov ebx, 0
+    mov ecx, 0
+
+.sigcar:
+    mov bl, byte[eax]
+    cmp bl, 0xA
+    je .salto
+
+    mov byte[esi+ecx], bl
+    cmp byte[eax], 0
+
+    jz .finalizar
+
+.salto:
+    inc eax
+    inc ecx
+    jmp .sigcar
+
+.finalizar:
+    pop ebx
+    pop ecx
+    ret
+
+stringToArrayNum:
     push eax
     push edx
     mov edx, 0
