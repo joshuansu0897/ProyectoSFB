@@ -2,8 +2,18 @@ section .data
     LabelOpcionError DB ' Esa Opcion No Es Valida ',0x0
     LabelSalidaError DB ' ERROR AL ABRIR ARCHIVO ',0x0
     LabelSaveError DB ' ERROR AL GUARDAR EL ARCHIVO ',0x0
+    LabelDatosError DB ' Solo puedes agregar datos al array ',0x0
 
 section .text
+errorArrayVacio:
+    call decoracionRoja       ; imprimimos la decoracionRoja
+    mov eax, LabelDatosError  ; cargamos el primer mensaje
+    call sprint               ; mandamos a llamar al "metodo" que imprime
+    call decoracionRoja       ; imprimimos la decoracionRoja
+    call saltoDeLinea
+    call saltoDeLinea
+    jmp main                  ; regresando al principio
+
 errorOpcion:
     call decoracionRoja       ; imprimimos la decoracionRoja
     mov eax, LabelOpcionError ; cargamos el primer mensaje

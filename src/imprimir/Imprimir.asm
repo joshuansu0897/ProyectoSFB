@@ -9,6 +9,8 @@ section .data
 section .text
 imprimirArreglos:
 
+    call validarArray
+
     mov eax, labelArregloEntrada    ; movemos el label a eax
     call sprint                     ; imprimimos el label
 

@@ -12,6 +12,9 @@ section .data
 
 section .text
 Guardar:
+
+    call validarArray
+
     mov ebx, array_res                                ; movemos el array(buffer) a ebx
     mov edx, 0                                        ; movemos 0 a edx
 

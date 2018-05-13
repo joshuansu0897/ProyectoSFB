@@ -1,5 +1,8 @@
 section .text
 Lineal:
+
+    call validarArray
+
     mov eax, [esi+ebp*4] ; Movemos un numero a eax
     call OperacionLineal ; se hace la operacion aritmetica
     mov [esp+ebp*4], eax ; movemos el numero resultado al array esp

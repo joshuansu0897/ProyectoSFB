@@ -20,6 +20,12 @@ section .bss
     letra   resb    2
 
 section .text
+
+validarArray:
+    cmp edi, 0                      ; validamos que tenga algo el array
+    jz errorArrayVacio              ; si esta vacio vamos hacia alla
+    ret
+    
 printArrEsi:
     mov eax, [esi+ebp*4] ; Movemos un numero a eax
     call iprintLF

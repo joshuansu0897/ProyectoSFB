@@ -1,5 +1,8 @@
 section .text
 Curva:
+
+    call validarArray
+
     mov eax, [esi+ebp*4] ; Movemos un numero a eax
     call OperacionCurva  ; se hace la operacion aritmetica
     mov [esp+ebp*4], eax ; el resultado se mueve al arreglo esp
