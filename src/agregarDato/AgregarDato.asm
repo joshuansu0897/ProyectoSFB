@@ -17,6 +17,7 @@ AgregarNumero:
     mov eax, Buffer_AgregarNumero     ; preparamos para convertir edad
     call atoi                         ; convertimos
     mov [esi+edi*4], eax              ; Movemos a la posiciòn que quedo disponible del arreglo
+    mov [esp+edi*4], eax              ; movemos a la posicion que quedo disponible en el segundo array
     inc edi                           ; Incrementamos la posiciòn del arreglo
     call saltoDeLinea
 

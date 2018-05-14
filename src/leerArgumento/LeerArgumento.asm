@@ -10,6 +10,7 @@ argumentoArchivo:
     pop eax                 ; extraemos el nombre del programa
     dec ecx                 ; restamos 1 al contador de argumentos
     pop ebx                 ; abre archivo ; extraemos el nombre del archivo a leer
+    mov esp, arreglo_result ; movemos el array a esp
     mov eax, sys_open       ; operacion: abrir el archivo
     mov ecx, 0              ; 0_RDONLY (solo lectura)
     int 80h
@@ -29,5 +30,4 @@ argumentoArchivo:
     mov ebx, buffer         ; imprime buffer
     call stringToArrayNum   ; a ver que pasa
 
-    mov esp, arreglo_result ; movemos el array a esp
     jmp main                ; regresamos

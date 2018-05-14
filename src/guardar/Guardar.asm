@@ -1,5 +1,5 @@
 segment .bss
-    array_res RESB 400                                ; buffer para alumno
+    array_res RESB 600                                ; buffer para alumno
     len_array_res EQU $-array_res                     ; lent del buffer
 
     filename RESB 30                                  ; buffer para filename
@@ -18,8 +18,9 @@ Guardar:
     mov ebx, array_res                                ; movemos el array(buffer) a ebx
     mov edx, 0                                        ; movemos 0 a edx, porque es el contador del array
 
-    call printArrEsi ; aqui esta bien todo el array de esi
+    ;;; call printArrEsi ; aqui esta bien todo el array de esi
 
+arreglosGuardar:
 .cicloArreglos:
     mov eax, [esi+ebp*4]                              ; Movemos un numero a eax
     call itoa                                         ; convertimos int a str
@@ -60,7 +61,7 @@ Guardar:
 
     call lentArrayNormal                              ; cambia el valor de ebp a edi
 
-    call printArrEsi ; para este punto esi ya esta modificado en su posicion 0, no se porque
+    ;;; call printArrEsi ; aqui esta bien todo el array de esi
 
     mov eax, p_archivo                                ; pregunta por nombre de archivo a guardar
     call sprint                                       ; imprime mensaje
@@ -83,7 +84,6 @@ Guardar:
     mov eax, sys_creat                                ; sys_creat EQU 8
     mov ebx, archivo                                  ; nombre del archivo
     mov ecx, 664o                                     ; los permisos
-
     int 0x80                                          ; llamada al kernel
 
     cmp eax, 0
@@ -93,6 +93,7 @@ Guardar:
     mov ebx, archivo                                  ; nombre del archivo que esta en la var archivo
     mov ecx, O_RDWR                                   ; abrimos en modo de lectura y escritura
     int 0x80                                          ; ejecutar
+
     cmp eax, 0
     jle errorOpenFile                                 ; si es 0 o menos error al abrir
 
