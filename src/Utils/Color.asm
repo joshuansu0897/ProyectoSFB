@@ -1,15 +1,15 @@
 section .data
-    setcolorVerde db 1Bh, '[32;1m', 0 ; color verde sin fondo (32 color; 1 el fondo )
-        .len equ $ - setcolorVerde
+    setcolorVerde DB 1Bh, '[32;1m', 0 ; color verde sin fondo (32 color; 1 el fondo )
+        .len EQU $-setcolorVerde
 
-    setcolorRojo db 1Bh, '[31;1m', 0  ; color rojo sin fondo (31 color; 1 el fondo )
-        .len equ $ - setcolorRojo
+    setcolorRojo DB 1Bh, '[31;1m', 0  ; color rojo sin fondo (31 color; 1 el fondo )
+        .len EQU $-setcolorRojo
 
-    setcolorAzul db 1Bh, '[34;1m', 0  ; color rojo sin fondo (34 color; 1 el fondo )
-        .len equ $ - setcolorAzul
+    setcolorAzul DB 1Bh, '[34;1m', 0  ; color rojo sin fondo (34 color; 1 el fondo )
+        .len EQU $-setcolorAzul
 
-    setcolorNormal db 1Bh, '[0;0m', 0 ; regresa a la normalidad (0 reset; 0 reset )
-        .len equ $ - setcolorNormal
+    setcolorNormal DB 1Bh, '[0;0m', 0 ; regresa a la normalidad (0 reset; 0 reset )
+        .len EQU $-setcolorNormal
 
     decoracion DB '***',0x0
 

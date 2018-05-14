@@ -25,7 +25,7 @@ validarArray:
     cmp edi, 0                      ; validamos que tenga algo el array
     jz errorArrayVacio              ; si esta vacio vamos hacia alla
     ret
-    
+
 printArrEsi:
     mov eax, [esi+ebp*4] ; Movemos un numero a eax
     call iprintLF
@@ -306,7 +306,7 @@ stringToArrayNum:            ; este metodo toma todo un str con numeros y los me
     ; itoa recibe un entero
     ; y lo convierte en cadena de texto
     ; recibe entero en EAX
-    ; recibe direccion de cadena en ESI
+    ; recibe direccion de cadena en EAX
     ; ------------------------------------
 itoa:
     push ebx                 ; preservamos ebx
@@ -338,6 +338,8 @@ itoa:
     inc ebx                  ; incrementamos contador
     cmp ebx,ecx              ; comparamos con la cuenta de digitos
     jne .guardar             ; si no son iguales, obtenemos otro digito del stack
+
+    mov eax, esi             ; movemos el str a eax
 
     pop esi                  ; restauramos esi
     pop edx                  ; restauramos edx

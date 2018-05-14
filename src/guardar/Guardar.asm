@@ -16,16 +16,13 @@ Guardar:
     call validarArray
 
     mov ebx, array_res                                ; movemos el array(buffer) a ebx
-    mov edx, 0                                        ; movemos 0 a edx
+    mov edx, 0                                        ; movemos 0 a edx, porque es el contador del array
 
-    ;;;call printArrEsi ; aqui esta bien todo el array de esi
+    call printArrEsi ; aqui esta bien todo el array de esi
 
 .cicloArreglos:
     mov eax, [esi+ebp*4]                              ; Movemos un numero a eax
-    push esi                                          ; guardamos el array de esi
     call itoa                                         ; convertimos int a str
-    mov eax, esi                                      ; movemos el str a eax
-    pop esi                                           ; sacamos el array del stack
 
 .sigcarEsi:                                           ; esto es para tomar todos los char del primer arg de esi
     mov cl, byte[eax]                                 ; movemos el byte a cl
@@ -41,10 +38,7 @@ Guardar:
     mov byte[ebx+edx], cl                             ; movemos la coma al bufer
     inc edx                                           ; incrementamos edx
     mov eax, [esp+ebp*4]                              ; Movemos un numero a eax
-    push esi                                          ; guardamos el array de esi
     call itoa                                         ; convertimos int a str
-    mov eax, esi                                      ; movemos el str a eax
-    pop esi                                           ; sacamos el array del stack
 
 .sigcarEsp:                                           ; esto es para los chars de los args de esp
     mov cl, byte[eax]                                 ; sacamos el byte del argumento
@@ -66,7 +60,7 @@ Guardar:
 
     call lentArrayNormal                              ; cambia el valor de ebp a edi
 
-    ;;;call printArrEsi ; para este punto esi ya esta modificado en su posicion 0, no se porque
+    call printArrEsi ; para este punto esi ya esta modificado en su posicion 0, no se porque
 
     mov eax, p_archivo                                ; pregunta por nombre de archivo a guardar
     call sprint                                       ; imprime mensaje
