@@ -1,0 +1,5 @@
+#!/bin/bash
+source ./autoCompile ./src Main
+mensaje 'Corriendo...'
+echo '' # solo es un salto de linea
+./Main.sh texto.txt
